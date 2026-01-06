@@ -3,22 +3,32 @@ const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../config");
 const Task = require("./task");
 
-const User = sequelize.define(
-  "User",
+const Cake = sequelize.define(
+  "Cake",
   {
     // Model attributes are defined here
-    id: {
-      type: DataTypes.INTEGER,
+    title: {
+      type: DataTypes.STRING,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
     },
-    email: {
+    description: {
       type: DataTypes.STRING,
-      unique: true,
       allowNull: false,
     },
-    password: {
+    time: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    priority_level: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    category: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    progress_level: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -29,11 +39,4 @@ const User = sequelize.define(
   }
 );
 
-// A user has many tasks
-User.hasMany(Task, {
-  foreignKey: "user_id",
-  onUpdate: "CASCADE",
-  onDelete: "CASCADE",
-});
-
-module.exports = User;
+module.exports = Cake;

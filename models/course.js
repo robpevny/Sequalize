@@ -3,8 +3,8 @@ const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../config");
 const Task = require("./task");
 
-const User = sequelize.define(
-  "User",
+const Course = sequelize.define(
+  "Course",
   {
     // Model attributes are defined here
     id: {
@@ -13,14 +13,13 @@ const User = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    email: {
+    name: {
       type: DataTypes.STRING,
-      unique: true,
-      allowNull: false,
+      allowNull: true,
     },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
+    level: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
   },
   {
@@ -29,11 +28,6 @@ const User = sequelize.define(
   }
 );
 
-// A user has many tasks
-User.hasMany(Task, {
-  foreignKey: "user_id",
-  onUpdate: "CASCADE",
-  onDelete: "CASCADE",
-});
 
-module.exports = User;
+
+module.exports = Course;
