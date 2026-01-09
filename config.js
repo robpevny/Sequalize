@@ -1,10 +1,19 @@
 const { Sequelize } = require("sequelize");
+require('dotenv').config();
 
-const sequelize = new Sequelize("task_manager", "root", "TD78Z.u", {
-  host: "localhost",
-  dialect: "mariadb",
-  port: 3306,
+// process environment variablr will refer to .env for development.
+// we will set new  values in render for production.
+const DB_HOSTNAME = process.env.DB_HOSTNAME;
+const DB_DATABASE = process.env.DB_DATABASE;
+const DB_USERNAME = process.env.DB_USERNAME;
+const DB_PASSWORD = process.env.DB_PASSWORD;
+const DB_DIALECT = process.env.DB_DIALECT;
+const DB_PORT = process.env.DB_PORT;
 
+const sequelize = new Sequelize(DB_DATABASE, DB_USERNAME, DB_PASSWORD, {
+  host: DB_HOSTNAME,
+  dialect: DB_DIALECT,
+  port: DB_PORT,
 });
 
 module.exports = sequelize;
