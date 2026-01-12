@@ -12,7 +12,17 @@ const courseRoutes = require("./Routes/courses");
 const cakeRoutes = require("./Routes/cakes");
 
 // Allows Cross-Origin-Resource sharing
-app.use(cors());
+var whitelist = ['http:/localhost:4200', 'https://school-client-i3jl.onrender.com']
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+app.use(cors(corsOptions));
 
 
 
